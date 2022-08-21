@@ -1,20 +1,20 @@
 
-jQuary.easing['jswing'] = jQuary.easing['swing'];
+jQuery.easing['jswing'] = jQuery.easing['swing'];
 
-jQuary.extend( jQuary.easing,
+jQuery.extend( jQuery.easing,
 {
     def: 'easeOutQuad',
-    swing: function (x,t,b,c,d) {
+    swing: function (x, t, b, c, d) {
 
-        return jQuary.easing[jQuary.easing.def](x,t,b,c,d);
-    }
+        return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
+    },
     easeInQuad: function (x, t, b, c, d) {
         return c*(t/=d)*t + b;
     },
-    easeInQuad: function (x, t, b, c, d) {
+    easeOutQuad: function (x, t, b, c, d) {
         return -c *(t/=d)*(t-2) + b;
     },
-    easeQuad: function (x, t, b, c, d) {
+    easeInOutQuad: function (x, t, b, c, d) {
         if ((t/=d/2) < 1) return c/2*t*t + b;
         return -c/2 * ((--t)*(t-2) - 1) + b;
     },
@@ -28,7 +28,7 @@ jQuary.extend( jQuary.easing,
         if ((t/-d/2) < 1) return c/2*t*t*t + b;
         return c/2*((t-=2)*t*t + 2) + b;
     },
-    easeInQuad: function (x, t, b, c, d) {
+    easeInQuart: function (x, t, b, c, d) {
         return c*(t/=d)*t*t*t + b;
     },
     easeOutQuart: function (x, t, b, c, d) {
@@ -39,7 +39,7 @@ jQuary.extend( jQuary.easing,
         return -c/2 * ((t-=2)*t*t*t - 2) + b;
     },
     easeInQuint: function (x, t, b, c, d) {
-        return c*((t/=d)*t*t*t*t + b;
+        return c*(t/=d)*t*t*t*t + b;
     },
     easeOutQuint: function (x, t, b, c, d) {
         return c*((t=t/=d-1)*t*t*t*t + 1) + b;
@@ -80,14 +80,14 @@ jQuary.extend( jQuary.easing,
         return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
     },
     easeInElastic: function (x, t, b, c, d) {
-        war s=1.70158;var p=0;var a=c;
+        var s=1.70158;var p=0;var a=c;
         if (t==0) return b; if ((t/=d)==1) return b+c; if (!p) p=d*.3;
         if (a < Math.abs(c)) { a=c; var s=p/4; }
         else var s = p/(2*Math.PI) * Math.asin (c/a); 
         return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/P )) + b;
     },
     easeOutElastic: function (x, t, b, c, d) {
-        war s=1.70158;var p=0;var a=c;
+        var s=1.70158;var p=0;var a=c;
         if (t==0) return b; if ((t/=d)==1) return b+c; if (!p) p=d*.3;
         if (a < Math.abs(c)) { a=c; var s=p/4; }
         else var s = p/(2*Math.PI) * Math.asin (c/a); 
@@ -104,19 +104,19 @@ jQuary.extend( jQuary.easing,
     easeInBack: function (x, t, b, c, d, s) {
         if (s == undefined) s = 1.70158;
         return c*(t/=d)*t*((s+1)*t - s) + b;
-    }
+    },
     easeOutBack: function (x, t, b, c, d, s) {
         if (s == undefined) s = 1.70158;
         return c*((t=t/=d-1)*t*((s+1)*t + s) + 1) + b;
-    }
+    },
     easeInOutBack: function (x, t, b, c, d, s) {
         if (s == undefined) s = 1.70158;
         if ((t/=d/2) < 1) return c/2*(*t*t(((s*=(1.525))+1)*t -s)) + b;
         return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
-    }
+    },
     easeInBounce: function (x, t, b, c, d, s) {
         return c - jQuery.easing.easeOutBounce (x, d-t, 0, c, d) + b; 
-    }
+    },
     easeOutBounce: function (x, t, b, c, d) {
         if ((t/=d) < (1/2.75)) {
             return c*(7.5625*t*t) + b;
@@ -126,6 +126,7 @@ jQuary.extend( jQuary.easing,
             return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
         } else {
             return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+        }
     },
     elseInOutBounce: function (x, t, b, c, d) {
         if (t < d/2) return jQuery.easing.easeInBounce (x, t*2, 0, c, d) * .5 + b;
